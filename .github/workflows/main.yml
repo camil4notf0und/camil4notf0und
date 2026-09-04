@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
+
   schedule:
     - cron: "0 */12 * * *"
+
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -14,17 +19,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Snake Animation
-      - uses: Platane/snk@master
-        id: snake-gif
+      - name: Snake Animation
+        uses: Platane/snk@master
         with:
           github_user_name: camil4notf0und
           svg_out_path: dist/github-contribution-grid-snake.svg
 
-      # Publica o SVG atualizado na branch output
-      - uses: crazy-max/ghaction-github-pages@v2.1.3
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v2.1.3
         with:
-          target_branch: output
           build_dir: dist
+          target_branch: output
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
