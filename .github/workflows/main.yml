@@ -1,4 +1,4 @@
-name: Generate Datas
+name: Generate Snake Datas
 
 on:
   push:
